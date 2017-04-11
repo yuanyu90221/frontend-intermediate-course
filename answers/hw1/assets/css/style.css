@@ -18,7 +18,9 @@ body {
 	background: rgba(0,0,0,.5);
 	background-size: cover;
 	z-index: -999;/*讓背景能放在底部 ref http://www.astralweb.com.tw/full-screen-backround-image/*/
+	height: 100%;
 	width: 100%;
+	min-height: 100%;
 	/*置中對齊*/
 	display: flex;
 	justify-content:  center; 
