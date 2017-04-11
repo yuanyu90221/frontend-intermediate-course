@@ -7,4 +7,5 @@
 +   5.flexbox中的 justify-content:center讓內部的div置中對齊
 +   6.flexbox中的 inline-flex 使用 flex-direction:row 讓每個div用row排列對齊
 +   7.flexbox中的 flex-wrap: wrap設定讓 inline-flex 有換行的樣式
-##  github.io 連結 <https://yuanyu90221.github.io/frontend-intermediate-course/answers/hw1/>
+##  github.io 連結 
++   <https://yuanyu90221.github.io/frontend-intermediate-course/answers/hw1/>
