@@ -17,13 +17,7 @@ body {
 	box-sizing: border-box;
 	background: rgba(0,0,0,.5);
 	background-size: cover;
-	/*position: fixed;*/
-	/*top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;*/
-	z-index: -999;
-	/*height: 100vh;*/
+	z-index: -999;/*讓背景能放在底部 ref http://www.astralweb.com.tw/full-screen-backround-image/*/
 	width: 100%;
 	/*置中對齊*/
 	display: flex;
