@@ -56,6 +56,8 @@ body {
     width: inherit;
     padding: 0;
     margin: 0;
+    /*處理 img 跟block間會有空白的問題*/
+    display: block;
 }
 
 .live_cell:hover {
@@ -71,7 +73,6 @@ body {
     height: 60px;
     padding: 0;
     background: green;
-    margin-top: -5px;
 }
 
 .player_logo {
