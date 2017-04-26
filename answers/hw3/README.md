@@ -26,7 +26,8 @@
         gulp.watch('./assets/scss/**/*.scss', ['sass']);
     });
 </pre>
-+   3.4. 執行編譯 `npm run build` 或是執行`gulp`
++   3.4. 執行編譯 `npm run build` 或是執行 `gulp`
+
 ##  使用properties
 +   1. 使用box-shadow 讓div產生 陰影 並使用 第三個參數值產生blur效果
 +   2. 使用filter:brightness(1.3) 讓div內容彩度變亮
