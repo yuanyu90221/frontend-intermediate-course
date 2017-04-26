@@ -21,7 +21,7 @@ body {
     box-sizing: border-box;
     background: rgba(0, 0, 0, .5);
     background-size: cover;
-    z-index: -999;
+    /*z-index: -999;*/
     /*讓背景能放在底部 ref http://www.astralweb.com.tw/full-screen-backround-image/*/
     width: 100%;
     min-height: 100%;
@@ -63,6 +63,7 @@ body {
 .live_cell:hover {
     box-shadow: 10px 10px 10px black;
     filter: brightness(1.3);
+    cursor: pointer;
 }
 
 .player_part {
@@ -107,7 +108,7 @@ body {
     margin-left: 10px;
     color: white;
     padding-top: 7px;
-     /*讓文字超出範圍顯示 ....*/
+    /*讓文字超出範圍顯示 ....*/
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
