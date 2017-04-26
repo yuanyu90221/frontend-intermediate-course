@@ -4,12 +4,13 @@
 +   1. 原因：因為跟 css語法很像，而且結構化也好用
 +   2. 使用方式：利用 gulp 搭配 gulp-sass 去編譯
 +   3. 具體步驟: 參考<http://edwardkuo.imas.tw/paper/2016/10/19/VisualStudio/2016-10-20/>
-++  3.1. 搭建變異環境 `npm i -g gulp; npm i gulp gulp-sass` 
-++  3.2. 配置好執行文件 gulpfile.js
-++  3.3. 在gulpfile內定義 gulp task
-++  如下：我在gulpfile 定義兩個task:sass跟default, 
-++        default 為預設gulp會執行的task, 
-++        sass 會藉由gulp-sass轉換./assets/scss/下所有.scss的檔案成為.css到./assets/css/下        
++   3.1. 搭建變異環境 `npm i -g gulp; npm i gulp gulp-sass` 
++   3.2. 配置好執行文件 gulpfile.js
++   3.3. 在gulpfile內定義 gulp task
+<p>如下：我在gulpfile 定義兩個task:sass跟default,<br/> 
+        default 為預設gulp會執行的task,<br/> 
+        sass 會藉由gulp-sass轉換./assets/scss/下所有.scss的檔案成為.css到./assets/css/下<br/>
+</p>        
 <pre>  
     // Sass configuration
     var gulp = require('gulp');
@@ -25,7 +26,7 @@
         gulp.watch('./assets/scss/**/*.scss', ['sass']);
     });
 </pre>
-++  3.4. 執行編譯 `npm run build` 或是執行`gulp`
++   3.4. 執行編譯 `npm run build` 或是執行`gulp`
 ##  使用properties
 +   1. 使用box-shadow 讓div產生 陰影 並使用 第三個參數值產生blur效果
 +   2. 使用filter:brightness(1.3) 讓div內容彩度變亮
