@@ -26,6 +26,7 @@
         gulp.watch('./assets/scss/**/*.scss', ['sass']);
     });
 </pre>
+
 +   3.4. 執行編譯 `npm run build` 或是執行 `gulp`
 
 ##  使用properties
