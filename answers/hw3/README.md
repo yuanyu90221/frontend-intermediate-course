@@ -28,7 +28,33 @@
 </pre>
 
 +   3.4. 執行編譯 `npm run build` 或是執行 `gulp`
-
++   3.5: 新增@mixin prefix,以及@mixin prefix-val這兩個method來動態加入-webkit-這類的值到css properties以及value
+<pre>
+/// Mixin to prefix a property
+/// @author yuanyu
+/// @param {String} $property - Property name
+/// @param {*} $value - Property value
+/// @param {List} $prefixes (()) - List of prefixes to print
+@mixin prefix($property, $value, $prefixes:()){
+    @each $prefix in $prefixes{
+        #{'-'+ $prefix + '-' + $property}: $value;
+    }
+    // Output standard non-prefixed declaration
+    #{$property}: $value;
+}
+/// Mixin to prefix a property-value
+/// @author yuanyu
+/// @param {String} $property - Property name
+/// @param {*} $value - Property value
+/// @param {List} $prefixes (()) - List of prefixes to print
+@mixin prefix-val($property, $value, $prefixes:()){
+    @each $prefix in $prefixes{
+        #{$property}:#{'-'+$prefix+'-'+$value};
+    }
+    // Output standard non-prefixed declaration
+    #{$property}: $value;
+}
+</pre>
 ##  使用properties
 +   1. 使用box-shadow 讓div產生 陰影 並使用 第三個參數值產生blur效果
 +   2. 使用filter:brightness(1.3) 讓div內容彩度變亮
