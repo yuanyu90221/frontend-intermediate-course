@@ -4,7 +4,7 @@ var sass = require('gulp-sass');
 
 gulp.task('sass', function() {
     gulp.src('./assets/scss/**/*.scss')
-        .pipe(sass())
+        .pipe(sass({ outputStyle: 'expanded' }))
         .pipe(gulp.dest('./assets/css/'))
 });
 

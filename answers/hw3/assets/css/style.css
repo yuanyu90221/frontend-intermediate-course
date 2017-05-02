@@ -1,6 +1,7 @@
 @charset "UTF-8";
 html {
-  height: 100%; }
+  height: 100%;
+}
 
 body {
   background-image: url("../images/bg-default.jpg");
@@ -11,7 +12,8 @@ body {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  height: 100%; }
+  height: 100%;
+}
 
 .mask {
   /*box-sizing: border-box;*/
@@ -27,18 +29,21 @@ body {
   /*display: flex;*/
   display: -webkit-flex;
   display: flex;
-  justify-content: center; }
-  .mask .out_space {
-    box-sizing: border-box;
-    height: 100%;
-    width: 1000px;
-    padding: 10px;
-    opacity: 1.0;
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; }
+  justify-content: center;
+}
+
+.mask .out_space {
+  box-sizing: border-box;
+  height: 100%;
+  width: 1000px;
+  padding: 10px;
+  opacity: 1.0;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
 .live_cell {
   /*box-sizing: border-box;*/
@@ -50,58 +55,73 @@ body {
   /*-webkit-transition: box-shadow ease-out 1s, filter ease-out 1s;
     transition: box-shadow ease-out 1s, filter ease-out 1s;*/
   -webkit-transition: box-shadow filter ease-out 1s;
-  transition: box-shadow filter ease-out 1s; }
-  .live_cell img {
-    width: inherit;
-    padding: 0;
-    margin: 0;
-    /*處理 img 跟block間會有空白的問題*/
-    display: block; }
-  .live_cell:hover {
-    box-shadow: 10px 10px 10px black;
-    /*filter: brightness(1.3);*/
-    -webkit-filter: brightness(1.5);
-    filter: brightness(1.5);
-    cursor: pointer; }
-  .live_cell .player_part {
-    /*box-sizing: inherit;*/
-    -webkit-box-sizing: inherit;
-    box-sizing: inherit;
-    width: inherit;
-    /*display: flex;*/
-    display: -webkit-flex;
-    display: flex;
-    flex-direction: row;
-    height: 60px;
-    padding: 0;
-    background: green; }
-    .live_cell .player_part .player_logo {
-      box-sizing: inherit;
-      margin: 5px 5px 5px 10px;
-      border-radius: 50%;
-      height: 50px;
-      width: 50px;
-      /*background-image: url('../images/player-default.png');*/ }
-      .live_cell .player_part .player_logo img {
-        height: inherit;
-        width: inherit;
-        border-radius: 50%;
-        padding: 0;
-        margin: 0; }
-    .live_cell .player_part .player_text {
-      box-sizing: inherit;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: left;
-      width: 250px; }
-      .live_cell .player_part .player_text span {
-        font-size: 1em;
-        margin-left: 10px;
-        color: white;
-        padding-top: 7px;
-        /*讓文字超出範圍顯示 ....*/
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        width: 200px; }
+  transition: box-shadow filter ease-out 1s;
+}
+
+.live_cell img {
+  width: inherit;
+  padding: 0;
+  margin: 0;
+  /*處理 img 跟block間會有空白的問題*/
+  display: block;
+}
+
+.live_cell:hover {
+  box-shadow: 10px 10px 10px black;
+  /*filter: brightness(1.3);*/
+  -webkit-filter: brightness(1.5);
+  filter: brightness(1.5);
+  cursor: pointer;
+}
+
+.live_cell .player_part {
+  /*box-sizing: inherit;*/
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+  width: inherit;
+  /*display: flex;*/
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  padding: 0;
+  background: green;
+}
+
+.live_cell .player_part .player_logo {
+  box-sizing: inherit;
+  margin: 5px 5px 5px 10px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  /*background-image: url('../images/player-default.png');*/
+}
+
+.live_cell .player_part .player_logo img {
+  height: inherit;
+  width: inherit;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+}
+
+.live_cell .player_part .player_text {
+  box-sizing: inherit;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 250px;
+}
+
+.live_cell .player_part .player_text span {
+  font-size: 1em;
+  margin-left: 10px;
+  color: white;
+  padding-top: 7px;
+  /*讓文字超出範圍顯示 ....*/
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 200px;
+}
