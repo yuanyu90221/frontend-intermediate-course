@@ -42,6 +42,18 @@
     // Output standard non-prefixed declaration
     #{$property}: $value;
 }
+@新增接受多重value的mixin
+/// Mixin to prefix a property
+/// @author yuanyu
+/// @param {String} $property - Property name
+/// @param {List} $prefixes (()) - List of prefixes to print
+/// @param {*} $values - Multiple values, e.g. $value1, $value2,..
+@mixin prefix-multi($property, $prefixes, $values...){
+    @each $prefix in $prefixes{
+        #{'-'+ $prefix + '-' + $property}: $values;
+    }
+    #{$property}: $values;
+}
 /// Mixin to prefix a property-value
 /// @author yuanyu
 /// @param {String} $property - Property name

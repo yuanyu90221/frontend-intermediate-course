@@ -3,19 +3,30 @@
 /// @param {String} $property - Property name
 /// @param {*} $value - Property value
 /// @param {List} $prefixes (()) - List of prefixes to print
-@mixin prefix($property, $value, $prefixes:()){
+@mixin prefix($property, $value, $prefixes){
     @each $prefix in $prefixes{
         #{'-'+ $prefix + '-' + $property}: $value;
     }
     // Output standard non-prefixed declaration
     #{$property}: $value;
 }
+/// Mixin to prefix a property
+/// @author yuanyu
+/// @param {String} $property - Property name
+/// @param {List} $prefixes (()) - List of prefixes to print
+/// @param {*} $values - Multiple values, e.g. $value1, $value2,..
+@mixin prefix-multi($property, $prefixes, $values...){
+    @each $prefix in $prefixes{
+        #{'-'+ $prefix + '-' + $property}: $values;
+    }
+    #{$property}: $values;
+}
 /// Mixin to prefix a property-value
 /// @author yuanyu
 /// @param {String} $property - Property name
 /// @param {*} $value - Property value
 /// @param {List} $prefixes (()) - List of prefixes to print
-@mixin prefix-val($property, $value, $prefixes:()){
+@mixin prefix-val($property, $value, $prefixes){
     @each $prefix in $prefixes{
         #{$property}:#{'-'+$prefix+'-'+$value};
     }
@@ -74,7 +85,8 @@ body {
     margin: 10px;
     /*-webkit-transition: box-shadow ease-out 1s, filter ease-out 1s;
     transition: box-shadow ease-out 1s, filter ease-out 1s;*/
-    @include prefix(transition, box-shadow filter ease-out 1s, webkit);
+    @include prefix-multi(transition, webkit, border-box ease-out 1s, filter ease-out 1s);
+    /*@include prefix(transition,box-shadow ease-out 1s, webkit);*/
     img {
         width: inherit;
         padding: 0;
