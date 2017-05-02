@@ -54,8 +54,8 @@ body {
   margin: 10px;
   /*-webkit-transition: box-shadow ease-out 1s, filter ease-out 1s;
     transition: box-shadow ease-out 1s, filter ease-out 1s;*/
-  -webkit-transition: border-box ease-out 1s, filter ease-out 1s;
-  transition: border-box ease-out 1s, filter ease-out 1s;
+  -webkit-transition: border-box ease-in-out 2s, filter ease-in-out 2s;
+  transition: border-box ease-in-out 2s, filter ease-in-out 2s;
   /*@include prefix(transition,box-shadow ease-out 1s, webkit);*/
 }
 

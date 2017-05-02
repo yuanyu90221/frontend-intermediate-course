@@ -85,7 +85,7 @@ body {
     margin: 10px;
     /*-webkit-transition: box-shadow ease-out 1s, filter ease-out 1s;
     transition: box-shadow ease-out 1s, filter ease-out 1s;*/
-    @include prefix-multi(transition, webkit, border-box ease-out 1s, filter ease-out 1s);
+    @include prefix-multi(transition, webkit, border-box ease-in-out 2s, filter ease-in-out 2s);
     /*@include prefix(transition,box-shadow ease-out 1s, webkit);*/
     img {
         width: inherit;
