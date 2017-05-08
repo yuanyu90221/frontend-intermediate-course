@@ -14,6 +14,8 @@ function loadTwitch(){
         'Client-ID': '8ussvz4lfocpyaewqd7f9mmso7t4kj'
         },
         success: function(data) {
+            removeLogo();
+            makeBalance();
             // 取出 data 所需的streams arrray
             appendDataToDOM(data.streams);
         }
@@ -66,5 +68,13 @@ function appendData(streamObj){
                                             <span>${name}</span>
                                         </div>
                                     </div> 
-                               </div>`));
+                               </div>`)).fadeIn();
+}
+
+function makeBalance(){
+    $('.out_space').append($('<div class="live_cell"></div><div class="live_cell"></div>'));
+}
+
+function removeLogo(){
+    $('.logo').remove();
 }

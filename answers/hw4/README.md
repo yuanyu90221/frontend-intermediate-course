@@ -18,18 +18,9 @@
 +   3.利用$.prepend這個method 將資料動態塞入資料最前方
 
 <pre>
-      $('.out_space').prepend($(`<div class="live_cell">
-                                    <img src="${view}"/>
-                                     <div class="player_part">
-                                        <div class="player_logo">
-                                            <img src="${logo_view}"/>
-                                        </div>
-                                        <div class="player_text">
-                                            <span>${display_name}</span>
-                                            <span>${name}</span>
-                                        </div>
-                                    </div> 
-                               </div>`));
+      $('.out_space').prepend(
+          //要顯示的div
+      );
 </pre>
 
 +   4.利用$.children.length 算出當下子元素的個數

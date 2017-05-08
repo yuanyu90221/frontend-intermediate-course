@@ -15,6 +15,45 @@ body {
   height: 100%;
 }
 
+.logo {
+  margin: 40vh auto 40vh auto;
+  height: 100px;
+  width: 100px;
+  background: linear-gradient(90deg, white 50%, black 50%);
+  border-radius: 50%;
+  position: relative;
+  transform-origin: 50% 50%;
+  box-sizing: border-box;
+  padding: 0;
+  animation: rolling 1s linear infinite;
+}
+
+.logo::after {
+  content: '';
+  display: block;
+  position: absolute;
+  border: solid black 12.5px;
+  border-radius: 50%;
+  left: 25px;
+  bottom: 0;
+  height: 25px;
+  width: 25px;
+  background: white;
+}
+
+.logo::before {
+  content: '';
+  display: block;
+  position: absolute;
+  border: solid white 12.5px;
+  border-radius: 50%;
+  left: 25px;
+  top: 0;
+  height: 25px;
+  width: 25px;
+  background: black;
+}
+
 .mask {
   /*box-sizing: border-box;*/
   -webkit-box-sizing: border-box;
@@ -126,4 +165,10 @@ body {
   text-overflow: ellipsis;
   overflow: hidden;
   width: 200px;
+}
+
+@keyframes rolling {
+  to {
+    transform: rotate(-2turn);
+  }
 }

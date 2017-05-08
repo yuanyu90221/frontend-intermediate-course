@@ -33,7 +33,11 @@
     // Output standard non-prefixed declaration
     #{$property}: $value;
 }
-
+$logo-size : 100px;
+$left-color: white;
+$right-color: black;
+$small-size: 25px;
+$border-range: 12.5px;
 html {
     height: 100%;
 }
@@ -49,7 +53,42 @@ body {
     box-sizing: border-box;
     height: 100%;
 }
-
+.logo {
+    margin:40vh auto 40vh auto;
+    height: $logo-size;
+    width: $logo-size;
+    background: linear-gradient(90deg, $left-color 50%, $right-color 50%);
+    border-radius: 50%;
+    position: relative;
+    transform-origin: 50% 50%;
+    box-sizing:border-box;
+    padding: 0;
+    &::after{
+        content: '';
+        display: block;
+        position: absolute;
+        border: solid $right-color $border-range;
+        border-radius: 50%;
+        left: $small-size;
+        bottom: 0;
+        height: $small-size;
+        width: $small-size;
+        background: $left-color;
+    }
+     &::before{
+        content: '';
+        display: block;
+        position: absolute;
+        border: solid $left-color $border-range;
+        border-radius: 50%;
+        left: $small-size;
+        top: 0;
+        height: $small-size;
+        width: $small-size;
+        background: $right-color;
+    }
+    animation: rolling 1s linear infinite;
+}
 .mask {
     /*box-sizing: border-box;*/
     @include prefix(box-sizing, border-box, webkit);
@@ -145,5 +184,11 @@ body {
                 width: 200px;
             }
         }
+    }
+}
+
+@keyframes rolling {
+    to {
+        transform: rotate(-2turn);
     }
 }
