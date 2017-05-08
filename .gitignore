@@ -1,5 +1,6 @@
 examples/
 answers/hw3/node_modules/
+answers/*/node_modules/
 # Logs
 logs
 *.log
