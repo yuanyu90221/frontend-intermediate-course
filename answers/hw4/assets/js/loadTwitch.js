@@ -1,11 +1,11 @@
 'use strict'
 $(document).ready(function(){
-    loadTwitch();
+    loadTwitch(appendDataToDOM);
 });
 /**
  * 動態載入 Twitch API 個數
  */
-function loadTwitch(){
+function loadTwitch(cb){
     // 參考API ref https://dev.twitch.tv/docs/v5/reference/streams/#get-live-streams
     $.ajax({
         type: 'GET',
@@ -17,7 +17,10 @@ function loadTwitch(){
             removeLogo();
             makeBalance();
             // 取出 data 所需的streams arrray
-            appendDataToDOM(data.streams);
+            cb(data.streams);
+        },
+        error: function(error){
+            console.log(error);
         }
     });
 }
