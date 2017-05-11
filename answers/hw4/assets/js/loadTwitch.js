@@ -71,7 +71,7 @@ function appendData(streamObj){
                                             <span>${name}</span>
                                         </div>
                                     </div> 
-                               </div>`)).fadeIn();
+                               </div>`));
 }
 
 function makeBalance(){
