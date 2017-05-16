@@ -9,6 +9,7 @@ $(document).ready(function(){
             loadTwitch(appendDataToDOM, false);
         }
     });
+ 
 });
 /**
  * 動態載入 Twitch API 個數
@@ -83,7 +84,7 @@ function appendData(streamObj){
     let view = (medium!==null)?medium:(small!==null)?small:(large!==null)?large:"./assets/images/view-default.jpg"; 
     let {logo, name, display_name} = channel;
     let logo_view = (logo!==null)?logo:"./assets/images/player-default.png";
-    
+    // console.log(logo_view);
     $('.out_space').append($(`<div class="live_cell">
                                     <img src="${view}"/>
                                      <div class="player_part">
@@ -96,6 +97,15 @@ function appendData(streamObj){
                                         </div>
                                     </div> 
                                </div>`)).fadeIn();
+   // bind loading img error handle
+   // 新增對於load img error的處理
+    $('.player_logo img').off('error'); 
+    $('.player_logo img').on('error',(e)=>{
+        console.log('logo loading error!');
+        e.target.src = './assets/images/player-default.png';
+    });
+
+    
 }
 
 function makeBalance(){
