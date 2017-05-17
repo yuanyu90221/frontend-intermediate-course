@@ -1,38 +1,33 @@
 'use strict'
 let current_pages = 0;
-$(document).ready(function(){
-     
+document.addEventListener("DOMContentLoaded", function(){
     loadTwitch(appendDataToDOM , true);
-    $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() == $(document).height()) {
-            // 滑到底部的時候
+    window.addEventListener('scroll', function(){
+        if(window.innerHeight + window.scrollY == document.body.scrollHeight){
+                        // 滑到底部的時候
             loadTwitch(appendDataToDOM, false);
         }
     });
 });
+
 /**
  * 動態載入 Twitch API 個數
  */
 function loadTwitch(cb, isFirst){
     // 參考API ref https://dev.twitch.tv/docs/v5/reference/streams/#get-live-streams
-    $.ajax({
-        type: 'GET',
-        url: `https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends&limit=20&offset=${current_pages}`,
-        headers: {
-        'Client-ID': '8ussvz4lfocpyaewqd7f9mmso7t4kj'
-        },
-        success: function(data) {
-            removeLogo();
-            removelastTwo();
-            // 取出 data 所需的streams arrray
-            cb(data.streams,isFirst);
-            makeBalance();
-            current_pages+=20;
-        },
-        error: function(error){
-            console.log(error);
-        }
-    });
+    
+    window.request('GET',
+    `https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends&limit=20&offset=${current_pages}&client_id=8ussvz4lfocpyaewqd7f9mmso7t4kj`,
+     (data)=>{
+        removeLogo();
+        removelastTwo();
+        // 取出 data 所需的streams arrray
+        cb(data.streams,isFirst);
+        makeBalance();
+        current_pages+=20;
+     },(err)=>{
+        console.log(err);
+     });
 }
 /**
  * 把Twitch API 取得的 data array動態匯出
@@ -67,7 +62,7 @@ function appendDataToDOM(data, isFirst){
  * @returns out_space內的 第一層子節點個數
  */
 function getRenderChannelNums(){
-    return $('.out_space').children().length;
+    return window.getChildren('.out_space').length;
 }
 /**
  * 把stream物件動態匯出來
@@ -84,7 +79,7 @@ function appendData(streamObj){
     let {logo, name, display_name} = channel;
     let logo_view = (logo!==null)?logo:"./assets/images/player-default.png";
     
-    $('.out_space').append($(`<div class="live_cell">
+    window.append('.out_space',`<div class="live_cell">
                                     <img src="${view}"/>
                                      <div class="player_part">
                                         <div class="player_logo">
@@ -95,17 +90,25 @@ function appendData(streamObj){
                                             <span>${name}</span>
                                         </div>
                                     </div> 
-                               </div>`)).fadeIn();
+                               </div>`);
 }
 
 function makeBalance(){
-    $('.out_space').append($('<div class="live_cell"></div><div class="live_cell"></div>'));
+    window.append('.out_space','<div class="live_cell"></div><div class="live_cell"></div>');
 }
 
 function removeLogo(){
-    $('.logo').remove();
+    window.remove('.logo');
 }
 
-function removelastTwo(){
-    $('.out_space > .live_cell').slice(-2).remove();
+function removelastTwo(){   
+   if($('.out_space > .live_cell')!==null){
+    let last2 = Array.from ($('.out_space > .live_cell'));
+    if(last2.length > 2){
+        last2 = last2.slice(-2);
+    }
+    last2.forEach((item)=>{
+        item.remove();
+    });
+   }
 }
