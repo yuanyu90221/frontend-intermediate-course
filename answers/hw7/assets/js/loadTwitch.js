@@ -31,7 +31,6 @@ function setLang(lng){
 function bindToogle(lng){
     current_pages = 0;
     setLang(lng);
-    bindTitle();
     $('.live_cell').remove();
     loadTwitch(appendDataToDOM, false);
 }
@@ -39,7 +38,7 @@ function bindToogle(lng){
  * 動態載入 Twitch API 個數
  */
 function loadTwitch(cb, isFirst){
-    
+    bindTitle();
     isLoading = true;
     // 參考API ref https://dev.twitch.tv/docs/v5/reference/streams/#get-live-streams
     $.ajax({
