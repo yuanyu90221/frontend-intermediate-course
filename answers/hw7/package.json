@@ -1,0 +1,21 @@
+{
+  "name": "hw5",
+  "version": "1.0.0",
+  "description": "sass-build up",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "gulp",
+    "build": "gulp"
+  },
+  "keywords": [
+    "gulp",
+    "gulp-sass"
+  ],
+  "author": "yuanyu90221",
+  "license": "ISC",
+  "dependencies": {
+    "bower": "^1.8.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  }
+}
