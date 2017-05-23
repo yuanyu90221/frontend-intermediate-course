@@ -1,20 +1,25 @@
 'use strict'
 let current_pages = 0;
+let isLoading = false;
 $(document).ready(function(){
      
     loadTwitch(appendDataToDOM , true);
     $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() == $(document).height()) {
+        if($(window).scrollTop() + $(window).height() == $(document).height() && (isLoading == false)) {
             // 滑到底部的時候
-            loadTwitch(appendDataToDOM, false);
+            setTimeout(loadTwitchAPI, 2000);
         }
     });
  
 });
+function loadTwitchAPI(){
+    loadTwitch(appendDataToDOM, false);
+}
 /**
  * 動態載入 Twitch API 個數
  */
 function loadTwitch(cb, isFirst){
+    isLoading = true;
     // 參考API ref https://dev.twitch.tv/docs/v5/reference/streams/#get-live-streams
     $.ajax({
         type: 'GET',
@@ -29,9 +34,11 @@ function loadTwitch(cb, isFirst){
             cb(data.streams,isFirst);
             makeBalance();
             current_pages+=20;
+            isLoading = false;
         },
         error: function(error){
             console.log(error);
+            isLoading = false;
         }
     });
 }
