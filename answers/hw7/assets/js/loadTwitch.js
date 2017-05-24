@@ -3,6 +3,7 @@ let current_pages = 0;
 let isLoading = false;
 window.lang = 'en';
 $(document).ready(function(){
+    bindTitle();
     loadTwitch(appendDataToDOM , true);
     $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() == $(document).height() && (isLoading == false)) {
@@ -45,10 +46,11 @@ function loadLogo(){
 function loadTwitch(cb, isFirst){
     bindTitle();
     isLoading = true;
+    let qLang = `${window.lang}`;
     // 參考API ref https://dev.twitch.tv/docs/v5/reference/streams/#get-live-streams
     $.ajax({
         type: 'GET',
-        url: `https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends&limit=20&offset=${current_pages}&language=${window.lang}`,
+        url: `https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends&limit=20&offset=${current_pages}&language=${qLang}`,
         headers: {
         'Client-ID': '8ussvz4lfocpyaewqd7f9mmso7t4kj'
         },
