@@ -3,9 +3,9 @@
 +   參考API ref <https://dev.twitch.tv/docs/v5/reference/streams/#get-live-streams>
 +   加入 url Parameter language 選項可參考<https://help.twitch.tv/customer/portal/articles/1771242-language-codes-for-localized-directories>
 +   2.提供按鈕切換語言
-+   |   2.1 global變數 window.lang儲存目前所query的語系:en或 zh-tw
-+   |   2.2 global變數 window.I18N['en']儲存英文語系對應的key value pair
-+   |   2.3 global變數 window.I18N['zh-tw']儲存英文語系對應的key value pair  
++       2.1 global變數 window.lang儲存目前所query的語系:en或 zh-tw
++       2.2 global變數 window.I18N['en']儲存英文語系對應的key value pair
++       2.3 global變數 window.I18N['zh-tw']儲存英文語系對應的key value pair  
 ## 使用Lib
 +   1. jQuery on event監聽 click事件
 ```javascript
