@@ -3,6 +3,7 @@ let current_pages = 0;
 let isLoading = false;
 window.lang = 'en';
 $(document).ready(function(){
+    bindTitle();
     loadTwitch(appendDataToDOM , true);
     $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() == $(document).height() && (isLoading == false)) {
