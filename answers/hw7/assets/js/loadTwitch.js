@@ -32,7 +32,12 @@ function bindToogle(lng){
     current_pages = 0;
     setLang(lng);
     $('.live_cell').remove();
+    loadLogo();
     loadTwitch(appendDataToDOM, false);
+}
+
+function loadLogo(){
+    $('.out_space').append(`<div class="logo"></div>`);
 }
 /**
  * 動態載入 Twitch API 個數
