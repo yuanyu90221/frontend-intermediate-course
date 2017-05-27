@@ -7,6 +7,7 @@ $(document).ready(function(){
     loadTwitch(appendDataToDOM , true);
     $(window).scroll(function() {
         if($(window).scrollTop() + $(window).height() == $(document).height() && (isLoading == false)) {
+            isLoading = true;
             // 滑到底部的時候
             setTimeout(loadTwitchAPI, 1000);
         }
@@ -45,7 +46,7 @@ function loadLogo(){
  */
 function loadTwitch(cb, isFirst){
     bindTitle();
-    isLoading = true;
+    // isLoading = true;
     let qLang = `${window.lang}`;
     // 參考API ref https://dev.twitch.tv/docs/v5/reference/streams/#get-live-streams
     $.ajax({
