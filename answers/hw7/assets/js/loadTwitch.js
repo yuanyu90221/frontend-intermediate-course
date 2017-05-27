@@ -9,7 +9,7 @@ $(document).ready(function(){
         if($(window).scrollTop() + $(window).height() == $(document).height() && (isLoading == false)) {
             isLoading = true;
             // 滑到底部的時候
-            setTimeout(loadTwitchAPI, 1000);
+            setTimeout(loadTwitchAPI, 10000);
         }
     });
     $('.zh-toogle').off('click');
