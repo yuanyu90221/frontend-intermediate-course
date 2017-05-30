@@ -1,15 +1,17 @@
 'use strict'
 let current_pages = 0;
+let prev_pages = 0;
 let isLoading = false;
 window.lang = 'en';
 $(document).ready(function(){
     bindTitle();
     loadTwitch(appendDataToDOM , true);
     $(window).scroll(function() {
-        if($(window).scrollTop() + $(window).height() == $(document).height() && (isLoading == false)) {
+        if(($(window).scrollTop() + $(window).height() == $(document).height()) && (isLoading === false)) {
             isLoading = true;
             // 滑到底部的時候
-            setTimeout(loadTwitchAPI, 10000);
+            
+            loadTwitch(appendDataToDOM, false);
         }
     });
     $('.zh-toogle').off('click');
@@ -24,9 +26,7 @@ $(document).ready(function(){
 function bindTitle(){
     $('.title').text(`${window.I18N[window.lang].TITLE}`);
 }
-function loadTwitchAPI(){
-    loadTwitch(appendDataToDOM, false);
-}
+
 function setLang(lng){
     window.lang = lng;
 }
@@ -46,29 +46,32 @@ function loadLogo(){
  */
 function loadTwitch(cb, isFirst){
     bindTitle();
-    // isLoading = true;
+    
     let qLang = `${window.lang}`;
-    // 參考API ref https://dev.twitch.tv/docs/v5/reference/streams/#get-live-streams
-    $.ajax({
-        type: 'GET',
-        url: `https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends&limit=20&offset=${current_pages}&language=${qLang}`,
-        headers: {
-        'Client-ID': '8ussvz4lfocpyaewqd7f9mmso7t4kj'
-        },
-        success: function(data) {
-            removeLogo();
-            removelastTwo();
-            // 取出 data 所需的streams arrray
-            cb(data.streams,isFirst);
-            makeBalance();
-            current_pages+=20;
-            isLoading = false;
-        },
-        error: function(error){
-            console.log(error);
-            isLoading = false;
-        }
-    });
+    if(prev_pages == 0 || (prev_pages != current_pages+20)){
+        // 參考API ref https://dev.twitch.tv/docs/v5/reference/streams/#get-live-streams
+        $.ajax({
+            type: 'GET',
+            url: `https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends&limit=20&offset=${current_pages}&language=${qLang}`,
+            headers: {
+            'Client-ID': '8ussvz4lfocpyaewqd7f9mmso7t4kj'
+            },
+            success: function(data) {
+                removeLogo();
+                removelastTwo();
+                // 取出 data 所需的streams arrray
+                cb(data.streams,isFirst);
+                makeBalance();
+                prev_pages = current_pages;
+                current_pages+=20;
+                // isLoading = false;
+            },
+            error: function(error){
+                console.log(error);
+                isLoading = false;
+            }
+        });
+    }
 }
 /**
  * 把Twitch API 取得的 data array動態匯出
@@ -96,6 +99,7 @@ function appendDataToDOM(data, isFirst){
         });
     } 
   }
+  isLoading = false;
 }
 /**
  * 取得當下 out_space內的 第一層子節點個數
