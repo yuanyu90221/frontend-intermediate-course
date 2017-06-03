@@ -1,4 +1,7 @@
-'use strict'
+// 'use strict'
+import utils from '../i18n/utils.js';
+window.$ = require('jquery');
+window.JQuery = $;
 let current_pages = 0;
 let prev_pages = 0;
 let isLoading = false;
@@ -29,7 +32,8 @@ $(document).ready(function(){
     });
 });
 function bindTitle(){
-    $('.title').text(`${window.I18N[window.lang].TITLE}`);
+    let currentLang = utils.getI18n('TITLE',`${window.lang}`);
+    $('.title').text(currentLang);
 }
 
 function setLang(lng){
@@ -44,7 +48,10 @@ function bindToogle(lng){
 }
 
 function loadLogo(){
-    $('.out_space').append(`<div class="logo"></div>`);
+    let num = $('.logo').length;
+    if( num == 0 ){
+        $('.out_space').append(`<div class="logo"></div>`);
+    }
 }
 /**
  * 動態載入 Twitch API 個數
