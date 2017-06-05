@@ -1,4 +1,4 @@
-// 'use strict'
+'use strict'
 import utils from '../i18n/utils.js';
 window.$ = require('jquery');
 window.JQuery = $;
