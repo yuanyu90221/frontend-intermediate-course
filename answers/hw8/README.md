@@ -77,5 +77,21 @@ function bindTitle(){
         ]
     }
 ```
+
++   5. 由於我的專案中用了 es6 語法 為了能夠使用使用 es2015語法的套件 
++      需要使用 babel-loader先把 所有js檔 轉換成 es2015 語法
++   安裝 babel, babel-loader, babel-preset-es2015
+```code
+    npm i babel babel-loader babel-preset-es2015 --save-dev
+```
+
++   在 rule內新增 babel-loader 設定
++   webpack.config.js設定
+```code
+    {
+        test: /\.js$/,
+        loaders: ['babel-loader?presets[]=es2015']
+    }
+```
 ##  github.io 連結 
 +   <https://yuanyu90221.github.io/frontend-intermediate-course/answers/hw8/> 
