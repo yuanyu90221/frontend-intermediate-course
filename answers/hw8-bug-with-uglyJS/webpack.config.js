@@ -12,17 +12,23 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.js$/,
+                loaders: ['babel-loader?presets[]=es2015']
+            },
+            {
                 test: /\.json$/,
                 use: 'json-loader'
             }
+            
         ]
     },
     // Plugins
     plugins: [
         new uglifyJsPlugin({
             compress: {
-                warning: false
+                warnings: false
             }
         })
     ]
+    
 }

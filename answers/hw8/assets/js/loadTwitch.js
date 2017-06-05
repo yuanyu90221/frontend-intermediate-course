@@ -1,7 +1,7 @@
 // 'use strict'
 import utils from '../i18n/utils.js';
-window.$ = require('jquery');
-window.JQuery = $;
+let $ = require('jquery');
+let JQuery = $;
 let current_pages = 0;
 let prev_pages = 0;
 let isLoading = false;
@@ -28,7 +28,12 @@ $(document).ready(function(){
     });
     $('.en-toogle').off('click');
     $('.en-toogle').on('click', function(){
-        bindToogle('en');
+        if(isLoading==false){
+            bindToogle('en');
+        }
+        else{
+            alert('loading is busy');
+        }
     });
 });
 function bindTitle(){
