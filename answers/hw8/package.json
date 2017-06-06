@@ -24,6 +24,10 @@
   },
   "devDependencies": {
     "babel": "^6.23.0",
+<<<<<<< HEAD
+=======
+    "babel-core": "^6.24.1",
+>>>>>>> 082416f0344e7c72fe26ba9e1a6e89592e61c620
     "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
     "json-loader": "^0.5.4"
