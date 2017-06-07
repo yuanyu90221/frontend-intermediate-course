@@ -83,6 +83,8 @@ function loadTwitch(cb, isFirst){
                 // isLoading = false;
             },
             error: function(error){
+                removeLogo();
+                removelastTwo();
                 console.log(error);
                 isLoading = false;
             }
