@@ -2,7 +2,7 @@
 let current_pages = 0;
 let prev_pages = 0;
 let isLoading = false;
-window.lang = 'en';
+let lang = 'en';
 $(document).ready(function(){
     bindTitle();
     loadTwitch(appendDataToDOM , true);
@@ -25,15 +25,20 @@ $(document).ready(function(){
     });
     $('.en-toogle').off('click');
     $('.en-toogle').on('click', function(){
-        bindToogle('en');
+        if(isLoading==false){
+            bindToogle('en');
+        }
+        else{
+            alert('loading is busy');
+        }
     });
 });
 function bindTitle(){
-    $('.title').text(`${window.I18N[window.lang].TITLE}`);
+    $('.title').text(`${window.I18N[lang].TITLE}`);
 }
 
 function setLang(lng){
-    window.lang = lng;
+    lang = lng;
 }
 function bindToogle(lng){
     current_pages = 0;
@@ -52,7 +57,7 @@ function loadLogo(){
 function loadTwitch(cb, isFirst){
     bindTitle();
     isLoading = true;
-    let qLang = `${window.lang}`;
+    let qLang = `${lang}`;
     if(prev_pages == 0 || (prev_pages != current_pages+20)){
         // 參考API ref https://dev.twitch.tv/docs/v5/reference/streams/#get-live-streams
         $.ajax({
@@ -72,6 +77,8 @@ function loadTwitch(cb, isFirst){
                 // isLoading = false;
             },
             error: function(error){
+                removeLogo();
+                removelastTwo();
                 console.log(error);
                 isLoading = false;
             }

@@ -31,6 +31,8 @@ function loadTwitch(cb, isFirst){
         current_pages+=20;
         isLoading = false;
      },(err)=>{
+        removeLogo();
+        removelastTwo();
         console.log(err);
         isLoading = false;
      });
