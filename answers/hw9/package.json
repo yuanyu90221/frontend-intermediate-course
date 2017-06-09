@@ -1,0 +1,38 @@
+{
+  "name": "hw8",
+  "version": "1.0.0",
+  "description": "sass-build up",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "gulp",
+    "build": "gulp",
+    "webpack": "webpack",
+    "merge-all": "webpack && gulp merge"
+  },
+  "keywords": [
+    "gulp",
+    "gulp-sass"
+  ],
+  "author": "yuanyu90221",
+  "license": "ISC",
+  "dependencies": {
+    "bower": "^1.8.0",
+    "fs": "0.0.1-security",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^3.1.0",
+    "jquery": "^3.2.1",
+    "path": "^0.12.7",
+    "webpack": "^2.6.1"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-minify-html": "^1.0.6",
+    "json-loader": "^0.5.4"
+  }
+}
