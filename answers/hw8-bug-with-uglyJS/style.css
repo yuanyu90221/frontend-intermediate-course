@@ -4,7 +4,7 @@ html {
 }
 
 body {
-  background-image: url("./assets/images/bg-default.jpg");
+  background-image: url("../images/bg-default.jpg");
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
@@ -134,7 +134,7 @@ body {
 .live_cell img {
   width: inherit;
   height: 168px;
-  background: url("./assets/images/view-default.jpg") no-repeat scroll 0 0;
+  background: url("../images/view-default.jpg") no-repeat scroll 0 0;
   padding: 0;
   margin: 0;
   /*處理 img 跟block間會有空白的問題*/
@@ -170,7 +170,7 @@ body {
   height: 50px;
   width: 50px;
   /*background:white;*/
-  background-image: url("./assets/images/player-default.png");
+  background-image: url("../images/player-default.png");
 }
 
 .live_cell .player_part .player_logo img {

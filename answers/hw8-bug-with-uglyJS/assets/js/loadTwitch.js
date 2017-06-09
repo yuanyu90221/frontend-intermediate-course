@@ -1,4 +1,4 @@
-'use strict'
+// 'use strict'
 import utils from '../i18n/utils.js';
 let $ = require('jquery');
 let JQuery = $;
@@ -27,7 +27,7 @@ $(document).ready(function(){
     });
     $('.en-toogle').off('click');
     $('.en-toogle').on('click', function(){
-       if(isLoading==false){
+        if(isLoading==false){
             bindToogle('en');
         }
         else{
