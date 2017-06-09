@@ -29,5 +29,6 @@ module.exports = {
                 warnings: false
             }
         })
-    ]   
-};
+    ]
+    
+}
