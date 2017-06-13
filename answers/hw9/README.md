@@ -27,19 +27,13 @@
     });
 ```
 
-+   3. 使用 gulp-replace把 template.html內的 ```<style></style>```與```<script></script>```取代成style.min.css以及bundle.js的內容
++   3. 使用 gulp-inline把 template.html內的 ```<style></style>```與```<script></script>```取代成style.min.css以及bundle.js的內容
 ```javascript
 // 把 template.html <style></style>換成 style.min.css內容 以及把 <script></script>換成 bundle.js內容 並且 壓縮template.html成index.html
-gulp.task('merge',['minifyCss'],function(){
-    console.log('merge');
-    return gulp.src('./assets/html/template.html')
-        .pipe(replace(/<style><\/style>/g, function(s){
-            let style = fs.readFileSync('./assets/css/style.min.css', 'utf8');
-            return `<style>${style}</style>`;
-        }))
-        .pipe(replace(/<script><\/script>/g, function(s){
-            let js = fs.readFileSync('./assets/js/bundle.js', 'utf8');
-            return `<script>${js}</script>`;
+gulp.task('inline-js-css', function(){
+    return gulp.src('template.html')
+        .pipe(inline({
+             base: './',// source 所在的資料夾
         }))
         .pipe(minifyHtml({comments:false, spare:false, quotes: false}))
         .pipe(rename('index.html'))

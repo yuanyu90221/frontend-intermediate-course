@@ -1,5 +1,5 @@
 let webpack = require('webpack');
-let uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
+// let uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 let path = require('path');
 module.exports = {
     // 起始的 js
@@ -7,7 +7,7 @@ module.exports = {
     // 輸出位址
     output: {
         path: path.join(__dirname,'assets/js'),
-        filename: 'bundle.min.js'
+        filename: 'bundle.js'
     },
     module: {
         rules: [
@@ -21,14 +21,6 @@ module.exports = {
             }
             
         ]
-    },
-    // Plugins
-    plugins: [
-        new uglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        })
-    ]
+    }
     
 }

@@ -7,7 +7,7 @@
     "test": "gulp",
     "build": "gulp",
     "webpack": "webpack",
-    "merge-all": "webpack && gulp merge"
+    "merge-all": "webpack && gulp package-all"
   },
   "keywords": [
     "gulp",
@@ -16,11 +16,9 @@
   "author": "yuanyu90221",
   "license": "ISC",
   "dependencies": {
-    "bower": "^1.8.0",
-    "fs": "0.0.1-security",
     "gulp": "^3.9.1",
+    "gulp-inline": "^0.1.3",
     "gulp-rename": "^1.2.2",
-    "gulp-replace": "^0.5.4",
     "gulp-sass": "^3.1.0",
     "jquery": "^3.2.1",
     "path": "^0.12.7",
@@ -31,8 +29,11 @@
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
+    "gulp-minify": "^1.0.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-minify-html": "^1.0.6",
+    "gulp-sequence": "^0.4.6",
+    "gulp-webpack": "^1.5.0",
     "json-loader": "^0.5.4"
   }
 }
