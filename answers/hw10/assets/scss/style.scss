@@ -1,0 +1,225 @@
+/// Mixin to prefix a property
+/// @author yuanyu
+/// @param {String} $property - Property name
+/// @param {*} $value - Property value
+/// @param {List} $prefixes (()) - List of prefixes to print
+@mixin prefix($property, $value, $prefixes){
+    @each $prefix in $prefixes{
+        #{'-'+ $prefix + '-' + $property}: $value;
+    }
+    // Output standard non-prefixed declaration
+    #{$property}: $value;
+}
+/// Mixin to prefix a property
+/// @author yuanyu
+/// @param {String} $property - Property name
+/// @param {List} $prefixes (()) - List of prefixes to print
+/// @param {*} $values - Multiple values, e.g. $value1, $value2,..
+@mixin prefix-multi($property, $prefixes, $values...){
+    @each $prefix in $prefixes{
+        #{'-'+ $prefix + '-' + $property}: $values;
+    }
+    #{$property}: $values;
+}
+/// Mixin to prefix a property-value
+/// @author yuanyu
+/// @param {String} $property - Property name
+/// @param {*} $value - Property value
+/// @param {List} $prefixes (()) - List of prefixes to print
+@mixin prefix-val($property, $value, $prefixes){
+    @each $prefix in $prefixes{
+        #{$property}:#{'-'+$prefix+'-'+$value};
+    }
+    // Output standard non-prefixed declaration
+    #{$property}: $value;
+}
+$logo-size : 100px;
+$left-color: white;
+$right-color: black;
+$small-size: 25px;
+$border-range: 12.5px;
+html {
+    height: 100%;
+}
+
+body {
+    background-image: url('./assets/images/bg-default.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    height: 100%;
+}
+.logo {
+    margin:40vh auto 40vh auto;
+    height: $logo-size;
+    width: $logo-size;
+    background: linear-gradient(90deg, $left-color 50%, $right-color 50%);
+    border-radius: 50%;
+    position: relative;
+    transform-origin: 50% 50%;
+    box-sizing:border-box;
+    padding: 0;
+    &::after{
+        content: '';
+        display: block;
+        position: absolute;
+        border: solid $right-color $border-range;
+        border-radius: 50%;
+        left: $small-size;
+        bottom: 0;
+        height: $small-size;
+        width: $small-size;
+        background: $left-color;
+    }
+     &::before{
+        content: '';
+        display: block;
+        position: absolute;
+        border: solid $left-color $border-range;
+        border-radius: 50%;
+        left: $small-size;
+        top: 0;
+        height: $small-size;
+        width: $small-size;
+        background: $right-color;
+    }
+    animation: rolling 1s linear infinite;
+}
+.mask {
+    /*box-sizing: border-box;*/
+    @include prefix(box-sizing, border-box, webkit);
+    background: rgba(0, 0, 0, .5);
+    background-size: cover;
+    /*z-index: -999;*/
+    /*讓背景能放在底部 ref http://www.astralweb.com.tw/full-screen-backround-image/*/
+    width: 100%;
+    min-height: 100%;
+    /*置中對齊*/
+    /*display: flex;*/
+    @include prefix-val(display,flex,webkit);
+    justify-content: center;
+    .out_space {
+        box-sizing: border-box;
+        height: 100%;
+        width: 1000px;
+        padding: 10px;
+        opacity: 1.0;
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        .ln-box {
+           width: 100%;
+           display: flex;
+           justify-content: center;
+           flex-wrap: wrap;
+           .title{
+               width: 100%;
+               color: white;
+               font-size: 40px;
+               text-align: center;
+               margin: 10px;
+           }
+           .zh-toogle{              
+               display: flex;
+               justify-content: flex-end;
+               color: white;
+               font-size: 20px;
+               padding-right: 10px;
+               cursor: pointer;
+           }
+           .en-toogle {               
+               display: flex;
+               color: white;
+               font-size: 20px;
+               justify-content: flex-start;
+               padding-left: 10px;
+               cursor: pointer;
+           }
+        }
+    }
+}
+
+.live_cell {
+    /*box-sizing: border-box;*/
+    @include prefix(box-sizing, border-box, webkit);
+    padding: 0;
+    width: 300px;
+    margin: 10px;
+    /*-webkit-transition: box-shadow ease-out 1s, filter ease-out 1s;
+    transition: box-shadow ease-out 1s, filter ease-out 1s;*/
+    @include prefix-multi(transition, webkit, border-box ease-in-out 2s, filter ease-in-out 2s);
+    /*@include prefix(transition,box-shadow ease-out 1s, webkit);*/
+    img {
+        width: inherit;
+        height: 168px;
+        background: url('./assets/images/view-default.jpg') no-repeat scroll 0 0;
+        padding: 0;
+        margin: 0;
+        /*處理 img 跟block間會有空白的問題*/
+        display: block;
+    }
+    &:hover {
+        box-shadow: 10px 10px 10px black;
+        /*filter: brightness(1.3);*/
+        @include prefix(filter, brightness(1.5),webkit);
+        cursor: pointer;
+    }
+    .player_part {
+        /*box-sizing: inherit;*/
+        @include prefix(box-sizing,inherit, webkit);
+        width: inherit;
+        /*display: flex;*/
+        @include prefix-val(display,flex, webkit);
+        flex-direction: row;
+        height: 60px;
+        padding: 0;
+        background: green;
+        .player_logo {
+            box-sizing: inherit;
+            margin: 5px 5px 5px 10px;
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+            /*background:white;*/
+            background-image: url('./assets/images/player-default.png');
+            img {
+                height: inherit;
+                width: inherit;
+                border-radius: 50%;
+                padding: 0;
+                margin: 0;
+            }
+        }
+        .player_text {
+            box-sizing: inherit;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            width: 250px;
+            span {
+                font-size: 1em;
+                margin-left: 10px;
+                color: white;
+                padding-top: 7px;
+                /*讓文字超出範圍顯示 ....*/
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                width: 200px;
+            }
+        }
+    }
+}
+
+@keyframes rolling {
+    to {
+        transform: rotate(-2turn);
+    }
+}
