@@ -1,0 +1,170 @@
+// 'use strict'
+import utils from '../i18n/utils.js';
+let $ = require('jquery');
+let currentPages = 0;
+let prevPages = 0;
+let isLoading = false;
+let lang = 'en';
+$(document).ready(function () {
+  bindTitle();
+  loadTwitch(appendDataToDOM, true);
+  $(window).scroll(function () {
+    if (($(window).scrollTop() + $(window).height() === $(document).height()) && (isLoading === false)) {
+      isLoading = true;
+      // 滑到底部的時候
+      loadTwitch(appendDataToDOM, false);
+    }
+  });
+  $('.zh-toogle').off('click');
+  $('.zh-toogle').on('click', function () {
+    if (isLoading === false) {
+      bindToogle('zh-tw');
+    } else {
+      window.alert('loading is busy');
+    }
+  });
+  $('.en-toogle').off('click');
+  $('.en-toogle').on('click', function () {
+    if (isLoading === false) {
+      bindToogle('en');
+    } else {
+      window.alert('loading is busy');
+    }
+  });
+});
+function bindTitle () {
+  let currentLang = utils.getI18n('TITLE', `${lang}`);
+  $('.title').text(currentLang);
+}
+
+function setLang (lng) {
+  lang = lng;
+}
+function bindToogle (lng) {
+  currentPages = 0;
+  setLang(lng);
+  $('.live_cell').remove();
+  loadLogo();
+  loadTwitch(appendDataToDOM, false);
+}
+
+function loadLogo () {
+  let num = $('.logo').length;
+  if (num === 0) {
+    $('.out_space').append(`<div class="logo"></div>`);
+  }
+}
+/**
+ * 動態載入 Twitch API 個數
+ */
+function loadTwitch (cb, isFirst) {
+  bindTitle();
+  isLoading = true;
+  let qLang = `${lang}`;
+  if (prevPages === 0 || (prevPages !== currentPages + 20)) {
+    // 參考API ref https://dev.twitch.tv/docs/v5/reference/streams/#get-live-streams
+    $.ajax({
+      type: 'GET',
+      url: `https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends&limit=20&offset=${currentPages}&language=${qLang}`,
+      headers: {
+        'Client-ID': '8ussvz4lfocpyaewqd7f9mmso7t4kj'
+      },
+      success: function (data) {
+        removeLogo();
+        removelastTwo();
+        // 取出 data 所需的streams arrray
+        cb(data.streams, isFirst);
+        makeBalance();
+        prevPages = currentPages;
+        currentPages += 20;
+        // isLoading = false;
+      },
+      error: function (error) {
+        removeLogo();
+        removelastTwo();
+        console.log(error);
+        isLoading = false;
+      }
+    });
+  }
+}
+/**
+ * 把Twitch API 取得的 data array動態匯出
+ * @param {any} data
+ * @param {boolean} isFirst
+ */
+function appendDataToDOM (data, isFirst) {
+  // 在 append 之前取的當下 .out_space下子節點個數
+  var currentChannelNum = getRenderChannelNums();
+  // 這邊做了一個判端式用來處理 reload的時候不重複加入多超過20 +2(2個空結構用來預防跑版)
+  if (isFirst === true) {
+    if (currentChannelNum < 22) {
+      if (data && data.length > 0) {
+        data.forEach((data) => {
+          appendData(data);
+        });
+      }
+    }
+  } else {
+    if (data && data.length > 0) {
+      data.forEach((data) => {
+        appendData(data);
+      });
+    }
+  }
+  isLoading = false;
+}
+/**
+ * 取得當下 out_space內的 第一層子節點個數
+ *
+ * @returns out_space內的 第一層子節點個數
+ */
+function getRenderChannelNums () {
+  return $('.out_space').children().length;
+}
+/**
+ * 把stream物件動態匯出來
+ * @param {any} streamObj stream的物件
+ */
+function appendData (streamObj) {
+  let {preview, channel} = streamObj;
+  let {medium, large, small} = preview;
+  if (medium === null && small === null && large === null) {
+    console.log(preview);
+  }
+  let view = (medium !== null) ? medium : (small !== null) ? small : (large !== null) ? large : './assets/images/view-default.jpg';
+  let {logo, name, displayName} = channel;
+  let logoView = (logo !== null) ? logo : './assets/images/player-default.png';
+  // console.log(logoView);
+  $('.out_space').append($(`<div class="live_cell">
+                                    <img src="${view}"/>
+                                     <div class="player_part">
+                                        <div class="player_logo">
+                                            <img src="${logoView}"/>
+                                        </div>
+                                        <div class="player_text">
+                                            <span>${displayName}</span>
+                                            <span>${name}</span>
+                                        </div>
+                                    </div> 
+                               </div>`)).fadeIn();
+  // bind loading img error handle
+  // 新增對於load img error的處理
+  $('.player_logo img').off('error');
+  $('.player_logo img').on('error', (e) => {
+    console.log('logo loading error!');
+    e.target.src = './assets/images/player-default.png';
+  });
+}
+
+function makeBalance () {
+  $('.out_space').append($('<div class="live_cell"></div><div class="live_cell"></div>'));
+}
+
+function removeLogo () {
+  $('.logo').remove();
+}
+
+function removelastTwo () {
+  $('.out_space > .live_cell').slice(-2).remove();
+}
