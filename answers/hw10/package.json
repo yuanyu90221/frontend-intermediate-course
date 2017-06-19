@@ -43,9 +43,7 @@
     "ignore": [
       "assets/css/",
       "assets/js/*.min.js",
-      "node_modules/",
-      "*.config.js",
-      "gulpfile.js"
+      "node_modules/"
     ]
   }
 }
